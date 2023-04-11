@@ -1,19 +1,23 @@
 {% extends 'front.twig' %}
 
 {% block content %}
-  <h1>{{ article.title }}</h1>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h1>{{ article.title }}</h1>
 
-  <p>{{ article.date }}</p>
-  <p>{{ article.location }}</p>
-  <p>{{ article.text|raw }}</p>
-  
-  {% if article.images|length > 0 %}
-    <div class="row">
-      {% for image in article.images %}
-        <div class="col-6 col-md-4">
-          <img src="{{ image }}" alt="{{ article.slug }}" class="img-fluid">
-        </div>
-      {% endfor %}
+      <p>{{ article.date }}</p>
+      <p>{{ article.location }}</p>
+      <p>{{ article.text|raw }}</p>
+      
+      {% if article.images|length > 0 %}
+      <div class="row">
+        {% for image in article.images %}
+          <div class="col-6 col-md-4">
+            <img src="{{ image }}" alt="{{ article.slug }}" class="img-fluid">
+          </div>
+        {% endfor %}
+      </div>
     </div>
+  </div>
   {% endif %}
 {% endblock %}

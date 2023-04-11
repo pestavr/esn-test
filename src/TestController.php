@@ -36,7 +36,7 @@ class TestController extends EsnFetcher {
         }
       }
       //Counting Section for each country
-      $country['num_of_sections'] = $country['sections'] ? count($country['sections']) : 0;
+      $country['num_of_sections'] = isset($country['sections']) && $country['sections'] ? count($country['sections']) : 0;
       $resp[] = $country;
     }
     
