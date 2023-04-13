@@ -84,21 +84,21 @@
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_{{ count }}" aria-expanded="false" aria-controls="collapse_{{ count }}">
                         <span class="fi fi-gr"></span>
-                        <span class="flag-icon flag-icon-{{ country['cc'] | lower }}"></span>
-                        {{ country['country'] }}
-                        (sections&nbsp;{{ country['num_of_sections'] }})
+                        <span class="flag-icon flag-icon-{{ country.cc | lower }}"></span>
+                        {{ country.country }}
+                        (sections&nbsp;{{ country.num_of_sections }})
                     </button>
                 </h5>
             </div>
             <div id="collapse_{{ count }}" class="collapse" aria-labelledby="heading_{{ count }}" data-parent="#accordion">
                   <div class="card-body">
                       <ul style="list-style-type: none">
-                      {% for section in country['sections'] %}
+                      {% for section in country.sections %}
                         <li>
-                          {{ section['label'] }}
-                          ({{ section['code'] }} 
-                          {% if section['website'] is not empty %}
-                          <a href="{{ section['website'] }}" target="_blank">
+                          {{ section.label }}
+                          ({{ section.code }} 
+                          {% if section.website is not empty %}
+                          <a href="{{ section.website }}" target="_blank">
                             <i class="fa fa-link"></i>
                           </a>
                           {% endif %}
@@ -152,7 +152,7 @@
         {% for code in data_t5['cards'] %}
         <tr>
           <td>
-            {% if code['data'] is not empty %}
+            {% if code.data is not empty %}
               Exists
             {% else %}
               Does not exists
@@ -162,23 +162,23 @@
             {{ code['code'] }}
           </td>
           <td>
-            {% if code['data'] is not empty %}
-              {{ data_t5['sections'][code['data']['section_code']] }}
+            {% if code.data is not empty %}
+              {{ data_t5.sections[code.data.section_code] }}
             {% endif %}
           </td>
           <td>
-            {% if code['data'] is not empty %}
-              {{ code['data']['card_status'] }}
+            {% if code.data is not empty %}
+              {{ code.data.card_status }}
             {% endif %}
           </td>
           <td>
-            {% if code['data'] is not empty %}
-              {{ code['data']['card_date'] }}
+            {% if code.data is not empty %}
+              {{ code.data.card_date }}
             {% endif %}
           </td>
           <td>
-            {% if code['data'] is not empty %}
-              {{ code['data']['card_date'] | date_modify("+1 year") | date('Y-m-d') }}
+            {% if code.data is not empty %}
+              {{ code.data.card_date | date_modify("+1 year") | date('Y-m-d') }}
             {% endif %}
           </td>
         </tr>
