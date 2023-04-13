@@ -125,6 +125,67 @@
    * Your solution does not require its use and you can delete it.
    */
   #}
-  {{ parent() }}
+  <div class="row g-4">
+    <div class="col-12">
+      <table class="table table-striped" >
+      <thead>
+        <th>
+          Exists
+        </th>
+        <th>
+          Code
+        </th>
+        <th>
+          Section Code
+        </th>
+        <th>
+          Status
+        </th>
+        <th>
+          Activation Date
+        </th>
+        <th>
+          Expiration Date
+        </th>
+      </thead>
+      <tbody>
+        {% for code in data_t5['cards'] %}
+        <tr>
+          <td>
+            {% if code['data'] is not empty %}
+              Exists
+            {% else %}
+              Does not exists
+            {% endif %}
+          </td>
+          <td>
+            {{ code['code'] }}
+          </td>
+          <td>
+            {% if code['data'] is not empty %}
+              {{ data_t5['sections'][code['data']['section_code']] }}
+            {% endif %}
+          </td>
+          <td>
+            {% if code['data'] is not empty %}
+              {{ code['data']['card_status'] }}
+            {% endif %}
+          </td>
+          <td>
+            {% if code['data'] is not empty %}
+              {{ code['data']['card_date'] }}
+            {% endif %}
+          </td>
+          <td>
+            {% if code['data'] is not empty %}
+              {{ code['data']['card_date'] | date_modify("+1 year") | date('Y-m-d') }}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 {% endblock %}
